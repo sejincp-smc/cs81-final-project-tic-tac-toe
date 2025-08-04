@@ -20,6 +20,9 @@
 - HTML/CSS
 - GitHub Pages
 
+## Instructions for use
+- [Play HERE](https://sejincp-smc.github.io/cs81-final-project-tic-tac-toe/)
+
 ## Icebox
 - Draw detection and feature
 - Winner History
