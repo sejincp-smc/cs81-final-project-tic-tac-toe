@@ -8,21 +8,21 @@ function App() {
   const [isGameStarted, setIsGameStarted] = useState(false);
 
 
-function handleClick(i) {
-  // Game Start btn
-  if (!isGameStarted || squares[i] || calculateWinner(squares)) return;
+  function handleClick(i) {
+    // Game Start btn
+    if (!isGameStarted || squares[i] || calculateWinner(squares)) return;
+    
+    const nextSquares = squares.slice();
+    nextSquares[i] = xIsNext ? 'X' : 'O';
+    setSquares(nextSquares);
+    setXIsNext(!xIsNext);
+  }
   
-  const nextSquares = squares.slice();
-  nextSquares[i] = xIsNext ? 'X' : 'O';
-  setSquares(nextSquares);
-  setXIsNext(!xIsNext);
-}
-  
-// Reset Game
-function resetGame() {
-  setSquares(Array(9).fill(null));
-  setXIsNext(true);
-}
+  // Reset Game
+  function resetGame() {
+    setSquares(Array(9).fill(null));
+    setXIsNext(true);
+  }
 
 const winner = calculateWinner(squares);
 let status;
@@ -30,24 +30,9 @@ let status;
 if (!isGameStarted) {
   status = 'Click "Start Game" to begin!';
 } else if (winner) {
-  status = `Winner: ${winner}`;
+  status = `🎉Winner is ${winner}🎉`;
 } else {
-  status = `Next player: ${xIsNext ? 'X' : 'O'}`;
-}
-
-  return (
-    <div className="app">
-      <h1>Tic Tac Toe</h1>
-      {!isGameStarted && (
-        <button className="start-button" onClick={() => setIsGameStarted(true)}>
-          Start Game
-          </button>
-        )}
-      <Board squares={squares} onClick={handleClick} />
-      <p>{status}</p>
-      <button onClick={resetGame}>Reset Game</button>
-    </div>
-  );
+  status = `Next player: ${xIsNext ? 'Player 1 🟠' : 'Player 2 🔵'}`;
 }
 
 function calculateWinner(squares) {
@@ -68,5 +53,27 @@ function calculateWinner(squares) {
   }
   return null;
 }
+  return (
+    <div className="app">
+      <h1>Tic Tac Toe</h1>
+      <div className="board-container">
+        {!isGameStarted && (
+          <div className="board-blocker"></div>
+        )}
+
+        <Board squares={squares} onClick={handleClick} />
+        
+        {!isGameStarted && (
+          <button className="start-button" onClick={() => setIsGameStarted(true)}>
+            Start Game
+          </button>
+        )}
+      </div>
+      <p>{status}</p>
+      <button onClick={resetGame}>Reset Game</button>
+    </div>
+  );
+}
+
 
 export default App;
