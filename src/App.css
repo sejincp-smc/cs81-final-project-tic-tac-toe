@@ -53,10 +53,10 @@
   margin: 4px;
   cursor: pointer;
   border: 2px solid #333;
-  background-color: #fff;
+  background-color: #a066d7;
   transition: background-color 0.2s;
 }
 
 .square:hover {
-  background-color: #f0f0f0;
+  background-color: #e6cbff;
 }

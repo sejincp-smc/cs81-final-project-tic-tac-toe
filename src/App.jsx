@@ -5,30 +5,44 @@ import './App.css'
 function App() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
+  const [isGameStarted, setIsGameStarted] = useState(false);
 
-  function handleClick(i) {
-    if (squares[i] || calculateWinner(squares)) return;
 
-    const nextSquares = squares.slice();
-    nextSquares[i] = xIsNext ? 'X' : 'O';
-    setSquares(nextSquares);
-    setXIsNext(!xIsNext);
-  }
+function handleClick(i) {
+  // Game Start btn
+  if (!isGameStarted || squares[i] || calculateWinner(squares)) return;
   
-  // Reset Game
-  function resetGame() {
+  const nextSquares = squares.slice();
+  nextSquares[i] = xIsNext ? 'X' : 'O';
+  setSquares(nextSquares);
+  setXIsNext(!xIsNext);
+}
+  
+// Reset Game
+function resetGame() {
   setSquares(Array(9).fill(null));
   setXIsNext(true);
 }
 
-  const winner = calculateWinner(squares);
-  const status = winner
-    ? `Winner: ${winner}`
-    : `Next player: ${xIsNext ? 'X' : 'O'}`;
+const winner = calculateWinner(squares);
+let status;
+
+if (!isGameStarted) {
+  status = 'Click "Start Game" to begin!';
+} else if (winner) {
+  status = `Winner: ${winner}`;
+} else {
+  status = `Next player: ${xIsNext ? 'X' : 'O'}`;
+}
 
   return (
     <div className="app">
       <h1>Tic Tac Toe</h1>
+      {!isGameStarted && (
+        <button className="start-button" onClick={() => setIsGameStarted(true)}>
+          Start Game
+          </button>
+        )}
       <Board squares={squares} onClick={handleClick} />
       <p>{status}</p>
       <button onClick={resetGame}>Reset Game</button>
