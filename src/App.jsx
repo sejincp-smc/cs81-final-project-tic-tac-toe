@@ -14,6 +14,12 @@ function App() {
     setSquares(nextSquares);
     setXIsNext(!xIsNext);
   }
+  
+  // Reset Game
+  function resetGame() {
+  setSquares(Array(9).fill(null));
+  setXIsNext(true);
+}
 
   const winner = calculateWinner(squares);
   const status = winner
@@ -25,6 +31,7 @@ function App() {
       <h1>Tic Tac Toe</h1>
       <Board squares={squares} onClick={handleClick} />
       <p>{status}</p>
+      <button onClick={resetGame}>Reset Game</button>
     </div>
   );
 }
