@@ -1,8 +1,25 @@
 # CS 81 Final Project - Tic Tac Toe
 ### Sejin Park
 
-## Description
-This project is the final project, Tic Tac Toe game.
+## Project Summary
+- This project is the final project, a classic Tic Tac Toe game built with React and deployed with GitHub Pages. It started by following the official React documentation Tic Tac Toe tutorial.
 
-## GitHub repo link
-- https://github.com/sejincp-smc/cs81-final-project-tic-tac-toe
+## Key features
+- Start Game button to begin playing
+- Board is locked before game starts
+- Player 1 🟠 and Player 2 🔵 with color-coded squares
+- Winner detection logic
+- Reset Game button
+- Responsive layout with light/dark background transition
+- Custom Google Fonts for clean visual style
+
+## Technologies used
+- React
+- Vite
+- JavaScript
+- HTML/CSS
+- GitHub Pages
+
+## Icebox
+- Draw detection and feature
+- Winner History
